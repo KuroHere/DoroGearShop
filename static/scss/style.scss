@@ -1,59 +1,555 @@
 @use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $background-color;
+    font-family: $font;
+    margin: 0;
+    padding: 0;
+}
 
 .main-header {
     font-family: $font;
+    width: 100%;
+}
 
-    .header-banner {
-        background-color: white;
-        padding: 10px 0px;
+.header-banner {
+    width: 100%;
+    overflow: hidden;
+
+    .banner {
+        width: 100%;
+        height: 60px;
+        object-fit: cover;
+        display: block;
+
+        @include respond-to('tablet') {
+            height: 40px;
+        }
+
+        @include respond-to('mobile') {
+            height: 30px;
+        }
+        
     }
-    .header-bar {
-        background-color: $primary-color;
-        padding: 5px 30px;
-        display: flex;
-        .logo {
-            height: 60px;
-            width: auto;
+}
+
+.header-bar {
+    background-color: $primary-color;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80px;
+    flex-wrap: nowrap;
+
+    @include respond-to('wide') {
+        padding: 8px 40px;
+    }
+
+    @include respond-to('tablet') {
+        padding: 6px 15px;
+        min-height: 70px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    @include respond-to('mobile') {
+        padding: 5px 10px;
+        min-height: 60px;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.left-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 0;
+
+    @include respond-to('tablet') {
+        gap: 15px;
+        flex: 1 1 100%;
+        order: 1;
+    }
+
+    @include respond-to('mobile') {
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo {
+        height: 60px;
+        width: auto;
+        max-width: 120px;
+        object-fit: contain;
+        flex-shrink: 0;
+
+        @include respond-to('tablet') {
+            height: 50px;
+            max-width: 100px;
+        }
+
+        @include respond-to('mobile') {
+            height: 40px;
             max-width: 80px;
-            object-fit: contain;
         }
-        .search-bar {
-            flex-grow: 1;
-            margin-left: 20px;
-            padding: 10px 0px;
-            display: flex;
-            
-            input {
-                background-color: $secondary-color;color: #fff;
-                font-family: $font;
-                font-size: 16px; 
-                font-weight: semibold;
-                padding: 0px 15px; 
-                width: 23%;
-                border-radius: 6px;
-                border: none;
-                padding: 12px 10px 12px 40px;
-                &:focus {
-                    outline: none;
-                }
-                &::placeholder {
-                    color: #fff;
-                    opacity: 0.8;
-                    padding-left: 3px;
+    }
+
+    .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        max-width: 400px;
+        min-width: 200px;
+
+        @include respond-to('tablet') {
+            max-width: 300px;
+            min-width: 150px;
+        }
+
+        @include respond-to('mobile') {
+            max-width: none;
+            min-width: 0;
+            flex: 1;
+        }
+
+        input {
+            background-color: $secondary-color;
+            color: white;
+            font-family: $font;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            border-radius: 6px;
+            border: none;
+            padding: 12px 10px 12px 40px;
+            transition: all 0.3s ease;
+
+            @include respond-to('tablet') {
+                font-size: 15px;
+                padding: 10px 8px 10px 35px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 14px;
+                padding: 8px 6px 8px 30px;
+            }
+
+            &:focus {
+                outline: none;
+                background-color: color.adjust($secondary-color, $lightness: 5%);
+                //transform: scale(1.02);
+            }
+
+            &::placeholder {
+                color: white;
+                opacity: 0.8;
+                padding-left: 3px;
+
+                @include respond-to('mobile') {
+                    font-size: 13px;
                 }
             }
-            .fas {
-                color: #fff;
-                position: absolute;
-                left: 130px;
-                transform: translateY(10px);
-                pointer-events: none;
-                font-size: 20px;
+        }
+
+        i {
+            color: white;
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 18px;
+            z-index: 1;
+
+            @include respond-to('tablet') {
+                font-size: 16px;
+                left: 10px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 14px;
+                left: 8px;
             }
         }
     }
-    .header-support {
-        background-color: $secondary-color;
-        padding: 5px 30px;
+}
+
+.right-bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+
+    @include respond-to('tablet') {
+        gap: 16px;
+        flex: 1 1 100%;
+        order: 2;
+        justify-content: space-around;
+    }
+
+    @include respond-to('mobile') {
+        gap: 12px;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+        opacity: 0.95;
+        padding: 4px;
+
+        &:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        @include respond-to('mobile') {
+            padding: 2px;
+        }
+
+        i {
+            font-size: 28px;
+            margin-bottom: 4px;
+
+            @include respond-to('tablet') {
+                font-size: 24px;
+                margin-bottom: 2px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 20px;
+                margin-bottom: 1px;
+            }
+        }
+
+        span {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+
+            @include respond-to('tablet') {
+                font-size: 12px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .build-config span,
+    .support span {
+        @include respond-to('mobile') {
+            display: none;
+        }
+    }
+
+    .cart-icon {
+        flex-direction: row;
+        align-items: center;
+
+        i {
+            font-size: 32px;
+            margin-bottom: 0;
+
+            @include respond-to('tablet') {
+                font-size: 28px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 24px;
+            }
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            min-width: 20px;
+            text-align: center;
+            border: 1px solid rgb(255, 0, 0);
+
+            @include respond-to('mobile') {
+                font-size: 9px;
+                padding: 1px 4px;
+                min-width: 16px;
+                top: -4px;
+                right: -6px;
+            }
+        }
+    }
+
+    .login-icon {
+        flex-direction: row;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid color.change($secondary-color, $alpha: 0.8);
+        border-radius: 20px;
+        padding: 6px 16px 6px 10px;
+        margin-left: 8px;
+        transition: all 0.3s ease;
+        max-width: 180px;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: $secondary-color;
+        }
+
+        @include respond-to('tablet') {
+            padding: 5px 12px 5px 8px;
+            margin-left: 4px;
+            max-width: 150px;
+        }
+
+        @include respond-to('mobile') {
+            padding: 4px 8px 4px 6px;
+            margin-left: 0;
+            max-width: 120px;
+            border-radius: 16px;
+        }
+
+        i {
+            font-size: 28px;
+            margin-right: 8px;
+
+            @include respond-to('tablet') {
+                font-size: 24px;
+                margin-right: 6px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 20px;
+                margin-right: 4px;
+            }
+        }
+
+        .login-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+
+            @include respond-to('mobile') {
+                overflow: hidden;
+            }
+
+            .login-text {
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 1.1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+
+                @include respond-to('tablet') {
+                    font-size: 12px;
+                }
+
+                @include respond-to('mobile') {
+                    font-size: 10px;
+                }
+            }
+
+            .account-text {
+                font-size: 12px;
+                font-weight: 400;
+                opacity: 0.95;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+
+                @include respond-to('tablet') {
+                    font-size: 11px;
+                }
+
+                @include respond-to('mobile') {
+                    font-size: 9px;
+                }
+
+                i {
+                    font-size: 10px;
+                    margin-left: 2px;
+
+                    @include respond-to('mobile') {
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header-support {
+    background-color: $secondary-color;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    min-height: 50px;
+
+    @include respond-to('wide') {
+        padding: 8px 40px;
+    }
+
+    @include respond-to('tablet') {
+        padding: 6px 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    @include respond-to('mobile') {
+        padding: 5px 10px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+        min-height: auto;
+    }
+
+    .support-left,
+    .support-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        @include respond-to('tablet') {
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        @include respond-to('mobile') {
+            gap: 10px;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    i {
+        color: white;
+        font-size: 20px;
+        flex-shrink: 0;
+
+        @include respond-to('tablet') {
+            font-size: 18px;
+        }
+
+        @include respond-to('mobile') {
+            font-size: 16px;
+        }
+    }
+
+    span {
+        color: white;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        @include respond-to('tablet') {
+            font-size: 13px;
+            gap: 4px;
+        }
+
+        @include respond-to('mobile') {
+            font-size: 12px;
+            gap: 3px;
+            white-space: normal;
+            text-align: center;
+        }
+    }
+
+    .hotline-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        @include respond-to('mobile') {
+            gap: 6px;
+        }
+
+        i {
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+    }
+
+    .hotline-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1.0;
+
+        .hotline-title {
+            font-weight: 500;
+            color: white;
+            line-height: 1.0;
+            font-size: 13px;
+
+            @include respond-to('tablet') {
+                font-size: 12px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 11px;
+            }
+        }
+
+        .hotline {
+            font-weight: 700;
+            color: white;
+            line-height: 1.0;
+            font-size: 14px;
+
+            @include respond-to('tablet') {
+                font-size: 13px;
+            }
+
+            @include respond-to('mobile') {
+                font-size: 12px;
+            }
+        }
+    }
+
+    @include respond-to('mobile') {
+        .support-left span:not(:first-child),
+        .support-right span:not(.hotline-wrap) {
+            display: none;
+        }
     }
 }

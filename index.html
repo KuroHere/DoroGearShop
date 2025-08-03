@@ -10,19 +10,58 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     </head>
     <body>
+        <script src="static/ts/script.js"></script>
         <header class="main-header">
             <div class="header-banner">
-                image here
+                <img src="static/assets/images/banner.jpg" alt="Banner" class="banner">
             </div>
             <div class="header-bar">
-                <img src="static/assets/images/logo.png" alt="Logo" class="logo">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                <div class="left-bar">
+                    <img src="static/assets/images/logo.png" alt="Logo" class="logo"> <!-- Place holder -->
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                    </div>
+                </div>
+ 
+                <div class="right-bar">
+                    <a href="#" class="build-config">
+                        <i class="fas fa-desktop"></i>
+                        <span>Xây dựng cấu hình</span>
+                    </a>
+                    <a href="#" class="support">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Hỗ trợ</span>
+                    </a>
+                    <a href="#" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">69+</span>
+                    </a>
+                    <a href="#" class="login-icon">
+                        <i class="fas fa-user"></i>
+                        <div class="login-info">
+                            <span class="login-text">Đăng nhập/ Đăng ký</span>
+                            <span class="account-text">Tài khoản <i class="fas fa-caret-down"></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
+
             <div class="header-support">
-                some more infomation here
+                <div class="support-left">
+                    <span><i class="fas fa-bars"></i> Danh mục sản phẩm</span>
+                    <span><i class="fas fa-qrcode"></i> Tra cứu bảo hành</span>
+                </div>
+                <div class="support-right">
+                    <span><i class="fas fa-map-marker-alt"></i> Chuỗi cửa hàng</span>
+                    <span class="hotline-wrap">
+                        <i class="fas fa-phone"></i>
+                        <span class="hotline-text">
+                            <span class="hotline-title">Gọi mua hàng</span>
+                            <span class="hotline">091x.xxx.xxx</span>
+                        </span>
+                    </span>
+                </div>
             </div>
         </header>
     </body>
