@@ -1,0 +1,59 @@
+@use 'variables' as *;
+
+.main-header {
+    font-family: $font;
+
+    .header-banner {
+        background-color: white;
+        padding: 10px 0px;
+    }
+    .header-bar {
+        background-color: $primary-color;
+        padding: 5px 30px;
+        display: flex;
+        .logo {
+            height: 60px;
+            width: auto;
+            max-width: 80px;
+            object-fit: contain;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin-left: 20px;
+            padding: 10px 0px;
+            display: flex;
+            
+            input {
+                background-color: $secondary-color;color: #fff;
+                font-family: $font;
+                font-size: 16px; 
+                font-weight: semibold;
+                padding: 0px 15px; 
+                width: 23%;
+                border-radius: 6px;
+                border: none;
+                padding: 12px 10px 12px 40px;
+                &:focus {
+                    outline: none;
+                }
+                &::placeholder {
+                    color: #fff;
+                    opacity: 0.8;
+                    padding-left: 3px;
+                }
+            }
+            .fas {
+                color: #fff;
+                position: absolute;
+                left: 130px;
+                transform: translateY(10px);
+                pointer-events: none;
+                font-size: 20px;
+            }
+        }
+    }
+    .header-support {
+        background-color: $secondary-color;
+        padding: 5px 30px;
+    }
+}

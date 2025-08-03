@@ -1,0 +1,58 @@
+.main-header {
+  font-family: "Roboto", sans-serif;
+}
+.main-header .header-banner {
+  background-color: white;
+  padding: 10px 0px;
+}
+.main-header .header-bar {
+  background-color: #008F69;
+  padding: 5px 30px;
+  display: flex;
+}
+.main-header .header-bar .logo {
+  height: 60px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+}
+.main-header .header-bar .search-bar {
+  flex-grow: 1;
+  margin-left: 20px;
+  padding: 10px 0px;
+  display: flex;
+}
+.main-header .header-bar .search-bar input {
+  background-color: #00C490;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: semibold;
+  padding: 0px 15px;
+  width: 23%;
+  border-radius: 6px;
+  border: none;
+  padding: 12px 10px 12px 40px;
+}
+.main-header .header-bar .search-bar input:focus {
+  outline: none;
+}
+.main-header .header-bar .search-bar input::placeholder {
+  color: #fff;
+  opacity: 0.8;
+  padding-left: 3px;
+}
+.main-header .header-bar .search-bar .fas {
+  color: #fff;
+  position: absolute;
+  left: 130px;
+  transform: translateY(10px);
+  pointer-events: none;
+  font-size: 20px;
+}
+.main-header .header-support {
+  background-color: #00C490;
+  padding: 5px 30px;
+}
+
+/*# sourceMappingURL=style.css.map */
